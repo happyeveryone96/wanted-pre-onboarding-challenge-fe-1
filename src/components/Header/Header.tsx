@@ -18,7 +18,7 @@ function Header() {
       alert('로그인이 필요합니다.');
       navigate('/auth');
     }
-  }, []);
+  });
 
   return (
     <div className={css.container}>
