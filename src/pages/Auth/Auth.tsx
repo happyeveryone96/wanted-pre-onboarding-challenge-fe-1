@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import css from './Home.module.scss';
+import css from './Auth.module.scss';
 import { useNavigate } from 'react-router-dom';
 import axios, { AxiosError } from 'axios';
 import { BASE_URL } from '../../config';
 
-function Home() {
+function Auth() {
   const navigate = useNavigate();
 
   const [signValid, setSignValid] = useState(false);
@@ -106,14 +106,14 @@ function Home() {
           />
         </div>
         <button
-          className={!signValid ? css.disabled : undefined}
+          className={!signValid ? `${css.disabled} ${css.button}` : css.button}
           disabled={!signValid}
           onClick={login}
         >
           로그인
         </button>
         <button
-          className={!signValid ? css.disabled : undefined}
+          className={!signValid ? `${css.disabled} ${css.button}` : css.button}
           disabled={!signValid}
           onClick={signup}
         >
@@ -124,4 +124,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Auth;

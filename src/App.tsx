@@ -1,12 +1,13 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/Home';
+import Header from './components/Header/Header';
+import Auth from './pages/Auth/Auth';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/auth" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );

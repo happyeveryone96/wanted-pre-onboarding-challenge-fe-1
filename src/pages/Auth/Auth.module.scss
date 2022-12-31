@@ -10,7 +10,7 @@
   width: 100vw;
 }
 
-button {
+.button {
   @include size(30vw, 50px, 30px auto);
   display: block;
   border-radius: 10px;
