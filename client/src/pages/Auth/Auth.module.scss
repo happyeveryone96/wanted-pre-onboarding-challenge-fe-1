@@ -1,0 +1,42 @@
+@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
+  width: $w;
+  height: $h;
+  margin: $m;
+  padding: $p;
+  min-width: 300px;
+}
+
+.container {
+  width: 100vw;
+}
+
+.button {
+  @include size(30vw, 50px, 30px auto);
+  display: block;
+  border-radius: 10px;
+  border: 0;
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+}
+
+.disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.inputWrap {
+  @include size(30vw, $m: 30px auto);
+  position: relative;
+  label {
+    display: block;
+    margin: 10px 4px;
+    font-size: 12px;
+  }
+  .input {
+    @include size(29vw, $p: 4px);
+    outline: 0;
+    border: 0;
+    border-bottom: 1px solid gray;
+  }
+}
