@@ -1,0 +1,28 @@
+@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
+  width: $w;
+  height: $h;
+  margin: $m;
+  padding: $p;
+}
+
+.container {
+  @include size(700px, $m: auto);
+  max-width: 500px;
+  .inputWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .input {
+    @include size(300px, 20px, 4px, 4px);
+    outline: none;
+  }
+  .btn {
+    @include size(50px, 25px, 30px);
+    color: white;
+    border: 0;
+    background-color: lightblue;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

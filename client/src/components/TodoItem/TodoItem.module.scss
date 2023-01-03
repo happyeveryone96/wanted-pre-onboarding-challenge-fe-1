@@ -1,0 +1,69 @@
+@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
+  width: $w;
+  height: $h;
+  margin: $m;
+  padding: $p;
+}
+
+@mixin position($p, $l: null, $t: null) {
+  position: $p;
+  left: $l;
+  top: $t;
+}
+
+@mixin checkBox {
+  @include size(24px, 24px, 6px 0 0 4px);
+  @include position(absolute, 0);
+  cursor: pointer;
+}
+
+@mixin btnStyle {
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.container {
+  position: relative;
+  left: 30px;
+  .list {
+    position: relative;
+    .text {
+      margin: 4px;
+      @include position(relative, -10px);
+      word-break: break-all;
+      line-height: 26px;
+    }
+    .inline {
+      display: inline;
+    }
+    .inlineBlock {
+      display: inline-block;
+    }
+    .input {
+      @include size(180px, $m: 4px, $p: 4px);
+      @include position(relative, -20px);
+      outline: none;
+      display: inline-block;
+    }
+    input[type='checkbox'] {
+      @include checkBox;
+    }
+  }
+  .updateBtn {
+    @include size(50px, 25px, 10px 10px 0 50px);
+    @include btnStyle();
+    background-color: rgb(48, 151, 189);
+  }
+  .deleteBtn {
+    @include size(50px, 25px, 10px);
+    @include btnStyle();
+    background-color: rgb(34, 105, 131);
+  }
+  .cancelBtn {
+    @include size(50px, 25px, 10px);
+    @include btnStyle();
+    background-color: rgb(41, 125, 161);
+  }
+}
