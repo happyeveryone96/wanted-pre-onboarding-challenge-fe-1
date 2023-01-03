@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import css from './Auth.module.scss';
 import { useNavigate } from 'react-router-dom';
-import axios, { AxiosError } from 'axios';
-import { BASE_URL } from '../../config';
+import { AxiosError } from 'axios';
+import { authApi } from '../../apis/Auth/auth';
 
 function Auth() {
   const navigate = useNavigate();
@@ -29,11 +29,8 @@ function Auth() {
 
   const login = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/users/login`, {
-        email,
-        password,
-      })
+    authApi
+      .signIn({ email, password })
       .then(res => {
         alert('로그인 성공!');
         localStorage.setItem('token', res.data.token);
@@ -51,11 +48,8 @@ function Auth() {
 
   const signup = (e: React.FormEvent<HTMLButtonElement>): void => {
     e.preventDefault();
-    axios
-      .post(`${BASE_URL}/users/create`, {
-        email,
-        password,
-      })
+    authApi
+      .signUp({ email, password })
       .then(res => {
         alert('회원가입 성공!');
         localStorage.setItem('token', res.data.token);

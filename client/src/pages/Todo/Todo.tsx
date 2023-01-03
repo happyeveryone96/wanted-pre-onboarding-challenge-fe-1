@@ -2,8 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TodoItem from '../../components/TodoItem/TodoItem';
 import css from './Todo.module.scss';
-import { BASE_URL } from '../../config';
-import instance from '../../apis/axios';
+import { todoApi } from '../../apis/Todo/todo';
 
 interface TodoProps {
   id: string;
@@ -28,7 +27,7 @@ function Todo() {
   const [isUpdated, setIsUpdated] = useState(false);
   const createTodo = () => {
     if (title !== '' && content !== '') {
-      instance.post(`${BASE_URL}/todos`, { title, content }).then(res => {
+      todoApi.createTodo({ title, content }).then(res => {
         if (res.status === 200) {
           setIsUpdated(true);
           setTitle('');
@@ -41,7 +40,7 @@ function Todo() {
   const [todoList, setTodoList] = useState<TodoProps[]>([]);
   useEffect(() => {
     setIsUpdated(false);
-    instance.get(`${BASE_URL}/todos`).then(res => {
+    todoApi.getTodos().then(res => {
       if (res.status === 200) {
         setTodoList(res.data.data);
       }

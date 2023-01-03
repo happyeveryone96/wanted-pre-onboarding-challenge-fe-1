@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import css from './TodoItem.module.scss';
-import instance from '../../apis/axios';
-import { BASE_URL } from '../../config';
+import { todoApi } from '../../apis/Todo/todo';
 
 interface TodoProps {
   id: string;
@@ -22,7 +21,7 @@ function TodoItem(props: TodoProps) {
     setNewContent(e.target.value);
 
   const deleteTodo = () => {
-    instance.delete(`${BASE_URL}/todos/${id}`).then(res => {
+    todoApi.deleteTodo(id).then(res => {
       if (res.status === 200) setIsUpdated(true);
     });
   };
@@ -39,18 +38,15 @@ function TodoItem(props: TodoProps) {
 
   const updateTodo = () => {
     if (newTitle !== '' && newContent !== '') {
-      instance
-        .put(`${BASE_URL}/todos/${id}`, {
-          title: newTitle,
-          content: newContent,
-        })
+      todoApi
+        .updateTodo(id, { title: newTitle, content: newContent })
         .then(res => {
           if (res.status === 200) {
             setIsUpdated(true);
             setUpdate(false);
           }
         });
-    } else alert('할 일을 입력해주세요!');
+    } else alert('할 일을 입력해주세요.');
   };
 
   return (
