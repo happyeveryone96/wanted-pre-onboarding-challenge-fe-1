@@ -26,13 +26,13 @@ function TodoItem(props: TodoProps) {
     });
   };
 
-  const [update, setUpdate] = useState(false);
-  const updateBtn = () => {
-    update ? updateTodo() : setUpdate(true);
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
+  const handleUpdate = () => {
+    isUpdateMode ? updateTodo() : setIsUpdateMode(true);
   };
 
-  const cancelBtn = () => {
-    setUpdate(false);
+  const cancelUpdateTodo = () => {
+    setIsUpdateMode(false);
     setNewTitle(title);
   };
 
@@ -43,7 +43,7 @@ function TodoItem(props: TodoProps) {
         .then(res => {
           if (res.status === 200) {
             setIsUpdated(true);
-            setUpdate(false);
+            setIsUpdateMode(false);
           }
         });
     } else alert('할 일을 입력해주세요.');
@@ -53,11 +53,13 @@ function TodoItem(props: TodoProps) {
     <div className={css.container}>
       <li className={css.list}>
         <span
-          className={`${css.text} ${update ? css.inline : css.inlineBlock}`}
+          className={`${css.text} ${
+            isUpdateMode ? css.inline : css.inlineBlock
+          }`}
         >
-          {!update && title}
+          {!isUpdateMode && title}
         </span>
-        {update && (
+        {isUpdateMode && (
           <input
             className={css.input}
             value={newTitle}
@@ -66,11 +68,13 @@ function TodoItem(props: TodoProps) {
         )}
         <br />
         <span
-          className={`${css.text} ${update ? css.inline : css.inlineBlock}`}
+          className={`${css.text} ${
+            isUpdateMode ? css.inline : css.inlineBlock
+          }`}
         >
-          {!update && content}
+          {!isUpdateMode && content}
         </span>
-        {update && (
+        {isUpdateMode && (
           <input
             className={css.input}
             value={newContent}
@@ -78,11 +82,11 @@ function TodoItem(props: TodoProps) {
           />
         )}
       </li>
-      <button className={css.updateBtn} onClick={updateBtn}>
-        {update ? '제출' : '수정'}
+      <button className={css.updateBtn} onClick={handleUpdate}>
+        {isUpdateMode ? '제출' : '수정'}
       </button>
-      {update && (
-        <button className={css.cancelBtn} onClick={cancelBtn}>
+      {isUpdateMode && (
+        <button className={css.cancelBtn} onClick={cancelUpdateTodo}>
           취소
         </button>
       )}
