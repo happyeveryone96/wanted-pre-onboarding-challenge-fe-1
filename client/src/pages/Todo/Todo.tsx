@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TodoItem from '../../components/TodoItem/TodoItem';
+import TodoInput from '../../components/TodoInput/TodoInput';
 import css from './Todo.module.scss';
 import { todoApi } from '../../apis/Todo/todo';
 
@@ -50,14 +51,8 @@ function Todo() {
   return (
     <div className={css.container}>
       <div className={css.inputWrap}>
-        <input
-          className={css.input}
-          value={title}
-          onChange={handleTitle}
-          placeholder="제목"
-        />
-        <input
-          className={css.input}
+        <TodoInput value={title} onChange={handleTitle} placeholder="제목" />
+        <TodoInput
           value={content}
           onChange={handleContent}
           placeholder="내용"

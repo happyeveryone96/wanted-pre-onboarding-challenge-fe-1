@@ -1,0 +1,6 @@
+@import '../../styles/variables';
+
+.input {
+  @include size(300px, 20px, 4px, 4px);
+  outline: none;
+}
