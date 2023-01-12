@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TodoItem from '../../components/TodoItem/TodoItem';
 import TodoInput from '../../components/TodoInput/TodoInput';
 import css from './Todo.module.scss';
@@ -18,12 +17,6 @@ function Todo() {
     setTitle(e.target.value);
   const handleContent = (e: ChangeEvent<HTMLInputElement>) =>
     setContent(e.target.value);
-
-  const token = localStorage.getItem('token');
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (token === null) navigate('/auth');
-  }, []);
 
   const [isUpdated, setIsUpdated] = useState(false);
   const createTodo = () => {
