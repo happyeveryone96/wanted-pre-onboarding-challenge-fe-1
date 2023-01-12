@@ -1,28 +1,4 @@
-@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
-  width: $w;
-  height: $h;
-  margin: $m;
-  padding: $p;
-}
-
-@mixin position($p, $l: null, $t: null) {
-  position: $p;
-  left: $l;
-  top: $t;
-}
-
-@mixin checkBox {
-  @include size(24px, 24px, 6px 0 0 4px);
-  @include position(absolute, 0);
-  cursor: pointer;
-}
-
-@mixin btnStyle {
-  border: 0;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-}
+@import '../../styles/variables';
 
 .container {
   position: relative;

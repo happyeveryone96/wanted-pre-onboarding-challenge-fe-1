@@ -10,3 +10,16 @@
   left: $l;
   top: $t;
 }
+
+@mixin checkBox {
+  @include size(24px, 24px, 6px 0 0 4px);
+  @include position(absolute, 0);
+  cursor: pointer;
+}
+
+@mixin btnStyle {
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}

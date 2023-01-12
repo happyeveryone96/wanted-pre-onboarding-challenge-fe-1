@@ -1,9 +1,4 @@
-@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
-  width: $w;
-  height: $h;
-  margin: $m;
-  padding: $p;
-}
+@import '../../styles/variables';
 
 .container {
   @include size(700px, $m: auto);

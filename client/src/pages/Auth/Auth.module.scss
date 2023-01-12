@@ -1,10 +1,4 @@
-@mixin size($w: auto, $h: auto, $m: auto, $p: auto) {
-  width: $w;
-  height: $h;
-  margin: $m;
-  padding: $p;
-  min-width: 300px;
-}
+@import '../../styles/variables';
 
 .container {
   width: 100vw;
@@ -12,6 +6,7 @@
 
 .button {
   @include size(30vw, 50px, 30px auto);
+  min-width: 300px;
   display: block;
   border-radius: 10px;
   border: 0;
