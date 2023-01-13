@@ -3,6 +3,7 @@ import css from './Auth.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { authApi } from '../../apis/Auth/auth';
+import { handleError } from '../../error/handleError';
 
 function Auth() {
   const navigate = useNavigate();
@@ -37,12 +38,7 @@ function Auth() {
         navigate('/');
       })
       .catch(err => {
-        if (err instanceof AxiosError) {
-          alert(err.response?.data.details);
-        } else {
-          alert('undefined error. check console log');
-          console.log(err);
-        }
+        handleError(err);
       });
   };
 
@@ -56,12 +52,7 @@ function Auth() {
         navigate('/');
       })
       .catch(err => {
-        if (err instanceof AxiosError) {
-          alert(err.response?.data.details);
-        } else {
-          alert('undefined error. check console log');
-          console.log(err);
-        }
+        handleError(err);
       });
   };
 
