@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import css from './Auth.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { AxiosError } from 'axios';
 import { authApi } from '../../apis/Auth/auth';
 import { handleError } from '../../error/handleError';
 
@@ -28,13 +27,14 @@ function Auth() {
     }
   }, [email, password]);
 
-  const login = (e: React.FormEvent<HTMLButtonElement>): void => {
+  const signIn = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     authApi
       .signIn({ email, password })
       .then(res => {
         alert('로그인 성공!');
-        localStorage.setItem('token', res.data.token);
+        const { token } = res.data;
+        localStorage.setItem('token', token);
         navigate('/');
       })
       .catch(err => {
@@ -42,13 +42,14 @@ function Auth() {
       });
   };
 
-  const signup = (e: React.FormEvent<HTMLButtonElement>): void => {
+  const signUp = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     authApi
       .signUp({ email, password })
       .then(res => {
         alert('회원가입 성공!');
-        localStorage.setItem('token', res.data.token);
+        const { token } = res.data;
+        localStorage.setItem('token', token);
         navigate('/');
       })
       .catch(err => {
@@ -91,14 +92,14 @@ function Auth() {
         <button
           className={!signValid ? `${css.disabled} ${css.button}` : css.button}
           disabled={!signValid}
-          onClick={login}
+          onClick={signIn}
         >
           로그인
         </button>
         <button
           className={!signValid ? `${css.disabled} ${css.button}` : css.button}
           disabled={!signValid}
-          onClick={signup}
+          onClick={signUp}
         >
           회원가입
         </button>
